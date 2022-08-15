@@ -38,22 +38,20 @@ li {
     margin: 0 20px 0 0;
 }
 
-.linkFokus:focus {
-        outline: none;
-        box-shadow: 0 0 0 1px #0055ffcc;
-        border-radius: 2px;
+.linkFokus:focus,
+.linkFokusPopupItem:focus, 
+.checkMore:focus,
+.popupDescriptionLink:focus,
+.checkInput:focus ~ .checkMore {
+    outline: none;
+    box-shadow: 0 0 0 1px #0055ffcc;
+    border-radius: 2px;
 }
 
 .linkFokusPopupItem {
     display: flex;
     height: 100px;
     flex-direction: column;
-}
-
-.linkFokusPopupItem:focus {
-    outline: none;
-    box-shadow: 0 0 0 1px #0055ffcc;
-    border-radius: 2px;
 }
 
 .headerStyle {
@@ -73,13 +71,11 @@ li {
     cursor: pointer;
 }
 
-.checkMore:focus {
-    outline: none;
-    box-shadow: 0 0 0 1px #0055ffcc;
-    border-radius: 2px;
-}
-
-.checkMore:hover {
+.checkMore:hover,
+.popupItem:hover,
+.link:hover,
+.checkBox:hover,
+.popupDescriptionLink:hover  {
     outline: none;
     box-shadow: 0 0 0 1px lightgray;
     border-radius: 2px;
@@ -101,9 +97,15 @@ li {
     background-image: url(images/popup-button.png);
 }
 
-.checkInput:focus ~ * .checkBox {
-    border: 1px hsla(220, 100%, 50%, 80%) solid;
+.checkInput:focus ~ * .checkBox, 
+.popupItem:focus {
+    border: 1px solid #0055ffcc;
     border-radius: 2px;
+}
+
+.wrapperPopup {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .popup {
@@ -116,12 +118,10 @@ li {
     overflow: overlay;
     box-shadow: 1px 1px 7px 1px #888888;
     text-align: center;
-    opacity: 0;
-    visibility: hidden;
 }
 
-#checkInputId:checked ~ div.popup,
-#checkInputId:checked ~ * div.popup {
+#checkInputId:checked ~ div.wrapperPopup,
+#checkInputId:checked ~ * div.wrapperPopup {
     opacity: 1;
     visibility: visible;
 }
@@ -136,18 +136,18 @@ li {
     display: none;
 }
 
-.popup::before, .popup:after {
+.wrapperPopup::before, .wrapperPopup:after {
     content: ''; 
     position: absolute;
-    right: 62px; 
-    top: -20px;
+    right: 222px; 
+    top: 30px;
     border: 10px solid transparent; 
     border-bottom: 10px solid lightgray;
 }
 
-.popup:after {
+.wrapperPopup:after {
     border-bottom: 10px solid white;
-    top: -18px;  
+    top: 32px;  
 }
 
 .popupList {
@@ -164,19 +164,6 @@ p {
     width: calc(100% / 3);
 }
 
-.popupItem:hover,
-.link:hover,
-.checkBox:hover {
-    outline: none;
-    box-shadow: 0 0 0 1px lightgray;
-    border-radius: 2px;
-}
-
-.popupItem:focus {
-    border: 1px solid #0055ffcc;
-    border-radius: 2px;
-}
-
 .popupImg {
     margin: auto;
 }
@@ -184,12 +171,6 @@ p {
 .noCheckItem,
 .noCheckItemBlock {
     display: none;
-}
-
-.checkInput:focus ~ .checkMore {
-    outline: none;
-    box-shadow: 0 0 0 1px #0055ffcc;
-    border-radius: 2px;
 }
 
 #checkMoreInputId:checked ~ .noCheckItem,
@@ -204,6 +185,6 @@ p {
 }
 
 .popupDescriptionLink {
-    display: block;
+    display: inline-block;
     margin: 60px 0 20px;
 }
